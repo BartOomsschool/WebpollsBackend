@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\API\\APIOpdracht\\OpdrachtAPI\\OpdrachtAPI.csproj": {}
+    "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\ProjectWebpolls\\WebpollsBackend\\OpdrachtAPI.csproj": {}
   },
   "projects": {
-    "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\API\\APIOpdracht\\OpdrachtAPI\\OpdrachtAPI.csproj": {
+    "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\ProjectWebpolls\\WebpollsBackend\\OpdrachtAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\API\\APIOpdracht\\OpdrachtAPI\\OpdrachtAPI.csproj",
+        "projectUniqueName": "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\ProjectWebpolls\\WebpollsBackend\\OpdrachtAPI.csproj",
         "projectName": "OpdrachtAPI",
-        "projectPath": "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\API\\APIOpdracht\\OpdrachtAPI\\OpdrachtAPI.csproj",
+        "projectPath": "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\ProjectWebpolls\\WebpollsBackend\\OpdrachtAPI.csproj",
         "packagesPath": "C:\\Users\\Barto\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\API\\APIOpdracht\\OpdrachtAPI\\obj\\",
+        "outputPath": "D:\\School\\Jaar_3\\Semester_1\\Visual Studio Code\\ProjectWebpolls\\WebpollsBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

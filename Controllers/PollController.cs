@@ -36,7 +36,7 @@ namespace OpdrachtAPI.Controllers
             {
                 pollsID.Add(id.PollID);
             }
-                var list = await _context.Poll.Where(i => pollsID.Contains(i.PollID)).ToListAsync();
+                var list = await _context.Poll.Where(i => pollsID.Contains(i.PollID)).OrderByDescending(o => o.PollID).ToListAsync();
 
             foreach (var p in list)
             {
