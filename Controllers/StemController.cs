@@ -41,37 +41,6 @@ namespace OpdrachtAPI.Controllers
             return stemmen;
         }
 
-        [HttpGet("zoekStemUser/{pollID}")]
-        public async Task<IActionResult> GetStemUser([FromRoute] long pollID)
-        {
-            var userID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var stemmen = new Stem();
-            List<Antwoord> antwoorden = await _context.Antwoord.Where(a => a.PollID == pollID).ToListAsync();
-            int counter = 0;
-            foreach(Antwoord antwoord in antwoorden)
-            {
-                var stem = await _context.Stem.Where(s => s.AntwoordID == antwoord.AntwoordID).Where(u => u.UserID == long.Parse(userID)).SingleOrDefaultAsync();
-
-                if (stem != null)
-                {
-                    counter++;
-                    stemmen = stem;
-                }
-            }
-            
-
-            if (stemmen == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(stemmen);
-        }
-
         // GET: api/Stem/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetStem([FromRoute] long id)

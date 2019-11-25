@@ -97,59 +97,6 @@ namespace OpdrachtAPI.Controllers
             return verzoekenLijst;
         }
 
-     /*   [HttpGet("{getVriendenZonderPoll}")]
-        public async Task<ActionResult<IEnumerable<Vriend>>> GetvriendenZonderPoll()
-        {
-            //Nog te doen zorgen dat de persoon zelf niet in de vriendenlijst komt
-            List<long> vriendIDs = new List<long>();
-            var userID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
-            int teller;
-            List<VriendUser> vriendenUsers = await _context.VriendUser.Where(a => a.UserID == long.Parse(userID)).Where(a => a.Status == false).ToListAsync();
-
-            foreach (VriendUser persoon in vriendenUsers)
-            {
-                vriendIDs.Add(persoon.VriendID);
-            }
-
-            List<Vriend> vrienden = await _context.Vriend.Where(i => vriendIDs.Contains(i.VriendID)).ToListAsync();
-            List<User> users = new List<User>();
-            List<User> usersZonderPoll = new List<User>();
-            List<Vriend> vriendenZonderPoll = new List<Vriend>();
-
-            foreach (Vriend vriend in vrienden)
-            {
-                users.Add(await _context.Users.Where(u => u.UserName == vriend.UserName).SingleOrDefaultAsync());
-            }
-
-            List<PollUser> usersMetPoll = await _context.PollUser.ToListAsync();
-
-            foreach (User user in users)
-            {
-                teller = 0;
-                foreach (PollUser pollUser in usersMetPoll)
-                {
-                    if (pollUser.UserID == user.UserID)
-                    {
-                        teller++;
-                    }
-                }
-                if (teller == 1)
-                {
-                    usersZonderPoll.Add(user);
-                }
-            }
-
-            foreach(User user in usersZonderPoll)
-            {
-                vriendenZonderPoll.Add(await _context.Vriend.Where(v => v.UserName == user.UserName).SingleOrDefaultAsync());
-            }
-
-
-            return vriendenZonderPoll;
-        }
-*/
-
-
         // GET: api/Vriend/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVriend([FromRoute] long id)

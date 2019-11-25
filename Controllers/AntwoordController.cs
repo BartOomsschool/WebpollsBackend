@@ -22,13 +22,6 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Antwoord
-   //     [HttpGet]
-  //      public IEnumerable<Antwoord> GetAntwoord()
-  //     {
-//            return _context.Antwoord;
- //       }
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Antwoord>>> GetAntwoord()
         {
@@ -52,27 +45,6 @@ namespace OpdrachtAPI.Controllers
 
             return list;
         }
-
-
-        // GET: api/Antwoord/5
-     //   [HttpGet("{id}")]
-     //   public async Task<IActionResult> GetAntwoord([FromRoute] long id)
-    //    {
-    //        var userID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
-     //       if (!ModelState.IsValid)
-     //       {
-     //           return BadRequest(ModelState);
-      //      }
-
-      //      var antwoord = await _context.Antwoord.FindAsync(id);
-
-     //       if (antwoord == null)
-     //       {
-    //            return NotFound();
-    //        }
-
-   //         return Ok(antwoord);
-//        }
 
         // PUT: api/Antwoord/5
         [HttpPut("{id}")]
