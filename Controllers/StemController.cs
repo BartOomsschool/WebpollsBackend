@@ -22,7 +22,7 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Stem
+        // Deze functie haalt alle stemment op. Deze functie wordt niet gebruikt.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Stem>>> GetStem()
         {
@@ -30,6 +30,7 @@ namespace OpdrachtAPI.Controllers
             return await _context.Stem.ToListAsync();
         }
 
+        // Deze functie haalt alle stemmen op met het ingegeven antwoordID.
         [HttpGet("getStemmenPerAntwoord/{antwoordID}")]
         public async Task<ActionResult<IEnumerable<Stem>>> GetStemmenPerAntwoord([FromRoute] long antwoordID)
         {
@@ -37,11 +38,10 @@ namespace OpdrachtAPI.Controllers
 
             List<Stem> stemmen = await _context.Stem.Where(s => s.AntwoordID == antwoordID).ToListAsync();
 
-
             return stemmen;
         }
 
-        // GET: api/Stem/5
+        // Deze functie haalt de stem op met de ingegeven Id.
         [HttpGet("{id}")]
         public async Task<IActionResult> GetStem([FromRoute] long id)
         {
@@ -60,7 +60,7 @@ namespace OpdrachtAPI.Controllers
             return Ok(stem);
         }
 
-        // PUT: api/Stem/5
+        // Deze functie update de stem met de ingegeven Id. Deze functie wordt niet gebruikt.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStem([FromRoute] long id, [FromBody] Stem stem)
         {
@@ -95,7 +95,7 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Stem
+        // Deze functie post een stem met de ingegeven antwoordID.
         [HttpPost]
         public async Task<IActionResult> PostStem([FromBody] long antwoordID)
         {
@@ -117,7 +117,7 @@ namespace OpdrachtAPI.Controllers
             return CreatedAtAction("GetStem", new { id = stem.StemID }, stem);
         }
 
-        // DELETE: api/Stem/5
+        // Deze functie delete een stem met de ingegeven id.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStem([FromRoute] long id)
         {

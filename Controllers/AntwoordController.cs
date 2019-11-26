@@ -22,6 +22,8 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
+
+        // Deze functie vraagt alle antwoorden op. Deze functie wordt niet gebruikt.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Antwoord>>> GetAntwoord()
         {
@@ -29,6 +31,7 @@ namespace OpdrachtAPI.Controllers
             return await _context.Antwoord.ToListAsync();
         }
 
+        // Deze functie vraagt alle stemmen op van een poll en geeft het aanal stemmen terug van ieder antwoord.
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Antwoord>>> GetAntwoordenPoll(long id)
         {
@@ -46,7 +49,7 @@ namespace OpdrachtAPI.Controllers
             return list;
         }
 
-        // PUT: api/Antwoord/5
+        // Deze functie doet een update wanneer er een antwoord verandert. Deze functie wordt niet gebruikt
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAntwoord([FromRoute] long id, [FromBody] Antwoord antwoord)
         {
@@ -81,7 +84,7 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Antwoord
+        // Deze functie voegt een antwoord toe.
         [HttpPost]
         public async Task<IActionResult> PostAntwoord([FromBody] Antwoord antwoord)
         {
@@ -96,7 +99,7 @@ namespace OpdrachtAPI.Controllers
             return CreatedAtAction("GetAntwoord", new { id = antwoord.AntwoordID }, antwoord);
         }
 
-        // DELETE: api/Antwoord/5
+        // Deze functie delete het antwoord met de ingegeven Id.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAntwoord([FromRoute] long id)
         {

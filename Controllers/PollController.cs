@@ -23,7 +23,7 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
-
+        // Deze functie haalt alle polls op van de gebruiker en kijkt of de gebruiker al gestemd heeft op de poll of niet.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Poll>>> GetPoll()
         {
@@ -51,7 +51,7 @@ namespace OpdrachtAPI.Controllers
             return list;
         }
 
-        // GET: api/Poll/5
+        // Deze functie haalt de poll op met de ingegeven Id.
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPoll([FromRoute] long id)
         {
@@ -71,7 +71,7 @@ namespace OpdrachtAPI.Controllers
             return Ok(poll);
         }
 
-        // PUT: api/Poll/5
+        // Deze functie update de poll met ingegeven Id en zet gestemd van de pollUser op true.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPoll([FromRoute] long id, [FromBody] Poll poll)
         {
@@ -109,7 +109,7 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Poll
+        // Deze functie maakt een nieuwe poll aan en ze admin van de poll op true.
         [HttpPost]
         public async Task<IActionResult> PostPoll([FromBody] Poll poll)
         {
@@ -133,7 +133,8 @@ namespace OpdrachtAPI.Controllers
         }
 
 
-        // DELETE: api/Poll/5
+        // Deze functie delete de poll met ingegeven Id wanneer de user admin is van de poll. Ook de antwoorden en stemmen van de poll worden verwijderd.
+        // Indien de user geen admin is van de poll dan word alleen de user verwijdert van de poll
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePoll([FromRoute] long id)
         {

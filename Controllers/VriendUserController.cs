@@ -21,7 +21,7 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
-        // GET: api/VriendUser
+        // Deze functie vraagt alle vriendUsers op.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VriendUser>>> GetVriendUser()
         {
@@ -29,7 +29,7 @@ namespace OpdrachtAPI.Controllers
             return await _context.VriendUser.ToListAsync();
         }
 
-        // GET: api/VriendUser/5
+        // Deze functie haalt de vriendUser op met de ingegeven Id.
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVriendUser([FromRoute] long id)
         {
@@ -48,7 +48,7 @@ namespace OpdrachtAPI.Controllers
             return Ok(vriendUser);
         }
 
-        // PUT: api/VriendUser/5
+        // Deze functie update de vriendUser met de ingegeven Id.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVriendUser([FromRoute] long id, [FromBody] VriendUser vriendUser)
         {
@@ -83,7 +83,7 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/VriendUser
+        // Deze functie post een vriendUser.
         [HttpPost]
         public async Task<IActionResult> PostVriendUser([FromBody] long vriend)
         {
@@ -103,7 +103,7 @@ namespace OpdrachtAPI.Controllers
             return CreatedAtAction("GetVriendUser", new { id = vriendUser.VriendUserID }, vriendUser);
         }
 
-        // DELETE: api/VriendUser/5
+        // Deze functie delete de vriendUser met de ingegeven Id.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVriendUser([FromRoute] long id)
         {

@@ -22,6 +22,7 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
+        // Deze functie Zorgt voor de authenticatie bij het inloggen van het project
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]User userParam)
         {
@@ -49,7 +50,7 @@ namespace OpdrachtAPI.Controllers
    //     }
 
 
-        // GET: api/User
+        // Dere functie vraagt alle users op. Deze functie wordt niet gebruikt.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
@@ -57,7 +58,7 @@ namespace OpdrachtAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/User/5
+        // Deze functie haalt de user op met de ingegeven Id. Deze functie wordt niet gebruikt.
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser([FromRoute] int id)
         {
@@ -76,7 +77,7 @@ namespace OpdrachtAPI.Controllers
             return Ok(user);
         }
 
-        // PUT: api/User/5
+        // Deze functie update een user met de ingegeven Id.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser([FromRoute] int id, [FromBody] User user)
         {
@@ -111,7 +112,7 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/User
+        // Deze functie post een user en een vriend.
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] User user)
         {
@@ -135,7 +136,7 @@ namespace OpdrachtAPI.Controllers
             return CreatedAtAction("GetUser", new { id = user.UserID }, user);
         }
 
-        // DELETE: api/User/5
+        // Deze functie delete een user met de ingegeven Id. Deze functie wordt niet gebruikt
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {

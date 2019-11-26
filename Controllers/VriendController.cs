@@ -22,11 +22,10 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Vriend
+        // Deze functie haalt alle vrienden op van de ingelogde user.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vriend>>> GetVriend()
         {          
-            //Nog te doen zorgen dat de persoon zelf niet in de vriendenlijst komt
             List<long> vriendIDs = new List<long>();
             var userID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
 
@@ -40,7 +39,7 @@ namespace OpdrachtAPI.Controllers
             return await _context.Vriend.Where(i => vriendIDs.Contains(i.VriendID)).ToListAsync();
         }
 
-
+        // Deze functie haalt alle users op die geen vriend zijn van de ingelogde user.
         [HttpGet("getNietVrienden")]
          public async Task<ActionResult<IEnumerable<Vriend>>> GetNietVriend()
          {
@@ -73,6 +72,7 @@ namespace OpdrachtAPI.Controllers
             return await _context.Vriend.Where(i => vriendIDs.Contains(i.VriendID)).ToListAsync();
          }
 
+        // Deze functie haalt alle vriend verzoeken op van de ingelogde user.
         [HttpGet("getVerzoeken")]
         public async Task<ActionResult<IEnumerable<Vriend>>> GetVerzoek()
         {
@@ -97,7 +97,7 @@ namespace OpdrachtAPI.Controllers
             return verzoekenLijst;
         }
 
-        // GET: api/Vriend/5
+        // Deze functie haalt de vriend op met de ingegeven Id. Deze functie wordt niet gebruikt.
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVriend([FromRoute] long id)
         {
@@ -117,7 +117,8 @@ namespace OpdrachtAPI.Controllers
             return Ok(vriend);
         }
 
-        // PUT: api/Vriend/5
+        // Deze functie update de vriendUser tabel.
+        // Wanneer men het verzoek accepteert zal de ingelogde user worden toegevoegd bij de vriend en de vriend wordt toegevoegd bij de ingelogde user.
         [HttpPut("accepteerVerzoek/{vriendID}")]
         public async Task<IActionResult> UpdateVriend([FromRoute] long vriendID, [FromBody] Vriend vriend)
         {
@@ -166,7 +167,7 @@ namespace OpdrachtAPI.Controllers
 
             return NoContent();
         }
-        // PUT: api/Vriend/5
+        // Deze update een vriend met de ingegeven Id. Deze functie wordt niet gebruikt.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVriend([FromRoute] long id, [FromBody] Vriend vriend)
         {
@@ -201,7 +202,8 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Vriend
+        // Deze functie post een nieuwe vriend.
+        // Deze vriend word ook in de vriendUser tabel geplaatst.
         [HttpPost]
         public async Task<IActionResult> PostVriend([FromBody] Vriend vriend)
         {
@@ -221,7 +223,8 @@ namespace OpdrachtAPI.Controllers
             return CreatedAtAction("GetVriend", new { id = vriend.VriendID }, vriend);
         }
 
-        // DELETE: api/Vriend/5
+        // Deze functie update de vriendUser tabel.
+        // Wanneer men het verzoek Ignored zal de vriend zijn Id uit de vriendUser tabel verwijdert worden.
         [HttpDelete("verwijderVerzoek/{vriendID}")]
         public async Task<IActionResult> DeleteVerzoekVriend([FromRoute] long vriendID)
         {
@@ -247,7 +250,7 @@ namespace OpdrachtAPI.Controllers
             return Ok(vriendUser);
         }
 
-        // DELETE: api/Vriend/5
+        // Deze functie verwijdert de vriend van de user en verwijdert ook de user bij de vriend.
         [HttpDelete("{vriendID}")]
         public async Task<IActionResult> DeleteVriend([FromRoute] long vriendID)
         {
@@ -264,7 +267,6 @@ namespace OpdrachtAPI.Controllers
 
             var vriendUser = await _context.VriendUser.Where(p => p.VriendID == vriendID).Where(p => p.UserID == long.Parse(userID)).SingleOrDefaultAsync();
             var vriendUser2 = await _context.VriendUser.Where(v => v.VriendID == ikZelf.VriendID).Where(u => u.UserID == userVriend.UserID).SingleOrDefaultAsync();
-           // var vriend = await _context.Vriend.FindAsync(id);
             if (vriendUser == null)
             {
                 return NotFound();

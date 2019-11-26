@@ -22,7 +22,7 @@ namespace OpdrachtAPI.Controllers
             _context = context;
         }
 
-
+        // Deze functie vraagt alle pollusers op. Deze functie wordt niet gebruikt.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PollUser>>> GetPollUser()
         {
@@ -30,29 +30,8 @@ namespace OpdrachtAPI.Controllers
             return await _context.PollUser.ToListAsync();
         }
 
-       [HttpGet("getPollVrienden")]
-        public async Task<ActionResult<IEnumerable<Vriend>>> GetPollVrienden(long pollID)
-        {
-            List<PollUser> pollVrienden = await _context.PollUser.Where(p => p.PollID == pollID).ToListAsync();
-            List<VriendUser> vrienden = new List<VriendUser>();
-            List<Vriend> vriendenLijst = new List<Vriend>();
 
-            foreach (PollUser pollVriend in pollVrienden)
-            {
-                vrienden.Add(await _context.VriendUser.Where(u => u.UserID == pollVriend.UserID).SingleOrDefaultAsync());
-            }
-
-            foreach(VriendUser vriendUser in vrienden)
-            {
-                vriendenLijst.Add(await _context.Vriend.Where(u => u.VriendID == vriendUser.VriendID).SingleOrDefaultAsync());
-            }
-
-            return vriendenLijst;
-        }
-
-
-
-        // GET: api/PollGebruiker/5
+        // Deze functie vraagt de pollUser op met de ingegeven Id. Deze functie wordt niet gebruikt
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPollUser([FromRoute] long id)
         {
@@ -62,17 +41,17 @@ namespace OpdrachtAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var pollGebruiker = await _context.PollUser.FindAsync(id);
+            var pollUser = await _context.PollUser.FindAsync(id);
 
-            if (pollGebruiker == null)
+            if (pollUser == null)
             {
                 return NotFound();
             }
 
-            return Ok(pollGebruiker);
+            return Ok(pollUser);
         }
 
-        // PUT: api/PollGebruiker/5
+        // Deze functie update de pollUser met de ingegeven Id.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPollUser([FromRoute] long id, [FromBody] PollUser pollUser)
         {
@@ -107,7 +86,7 @@ namespace OpdrachtAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/PollGebruiker
+        // Deze functie maakt een nieuwe pollUser aan met de ingelogde user
         [HttpPost]
         public async Task<IActionResult> PostPollUser([FromBody] PollUser pollUser)
         {
@@ -128,7 +107,7 @@ namespace OpdrachtAPI.Controllers
             return CreatedAtAction("GetPollUser", new { id = juistPollUser.PollUserID }, juistPollUser);
         }
 
-        // DELETE: api/PollGebruiker/5
+        // Deze functie verwijdert de pollUser van de poll met de ingegeven Ids.
         [HttpDelete("verwijderUserVanPoll/{vriendID}/{pollID}")]
         public async Task<IActionResult> DeletePollUserVanPoll([FromRoute] long vriendID, long pollID)
         {
@@ -151,7 +130,7 @@ namespace OpdrachtAPI.Controllers
             return Ok(pollUser);
         }
 
-        // DELETE: api/PollGebruiker/5
+        // Deze functie delete de pollUser met de ingegeven Id.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePollUser([FromRoute] long id)
         {
