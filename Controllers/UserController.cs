@@ -36,18 +36,18 @@ namespace OpdrachtAPI.Controllers
             return Ok(user);
        }
 
-        
-  //      [HttpGet("validateUserNaam")]
-  //      public async Task<ActionResult<IEnumerable<User>>> validateUserNaam(User user)
-  //      {
-  //          var dubelleUser = await _context.Users.Where(a => a.UserName == user.UserName).SingleOrDefaultAsync();
-  //          if (dubelleUser != null)
-   //         {
-   //             return BadRequest("Gebruikersnaam bestaat al");
-  //          }
+        // Deze functie kijkt of de username al bestaat bij het registreren van de user.
+        [HttpGet("validateUserNaam/{userName}")]
+        public async Task<ActionResult<IEnumerable<User>>> validateUserNaam(string userName)
+        {
+            var dubelleUser = await _context.Users.Where(a => a.UserName.Equals(userName)).SingleOrDefaultAsync();
+            if (dubelleUser != null)
+            {
+               return Ok("Gebruikersnaam bestaat al");
+            }
 
-  //          return Ok();
-   //     }
+            return Ok();
+        }
 
 
         // Dere functie vraagt alle users op. Deze functie wordt niet gebruikt.
