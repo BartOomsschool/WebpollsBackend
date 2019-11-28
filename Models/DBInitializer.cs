@@ -19,6 +19,9 @@ namespace OpdrachtAPI.Models
             context.Users.AddRange(
                             new User { UserName = "test", Password = "test", FirstName = "Bart", LastName = "Ooms", Email = "test@hotmail.com" }
                                  );
+            context.Vriend.AddRange(
+                            new Vriend { UserName = "test", Email = "test@hotmail.com" }
+                                );
             context.SaveChanges();
 
 
