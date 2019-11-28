@@ -20,7 +20,7 @@ namespace OpdrachtAPI.Models
                             new User { UserName = "test", Password = "test", FirstName = "Bart", LastName = "Ooms", Email = "test@hotmail.com" }
                                  );
             context.Vriend.AddRange(
-                            new Vriend { UserName = "test", Email = "test@hotmail.com" }
+                            new Vriend { Email = "test@hotmail.com", UserName = "test"  }
                                 );
             context.SaveChanges();
 
